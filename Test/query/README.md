@@ -10,8 +10,8 @@ Please download the required trained models and store them in ```./``` (Please r
 ## Run
 We assume the queries are stored as follows:
 ```
-ROOT_DIRECTORY = "/code_execution/"
-DATA_DIRECTORY = "/data/"
+ROOT_DIRECTORY = "/code/"
+DATA_DIRECTORY = "/data/dataset_test/"
 QRY_VIDEOS_DIRECTORY = DATA_DIRECTORY + "query/"
 OUTPUT_FILE = ROOT_DIRECTORY + "subset_query_descriptors.npz"
 QUERY_SUBSET_FILE = DATA_DIRECTORY + "query_subset.csv"
@@ -19,7 +19,7 @@ QUERY_SUBSET_FILE = DATA_DIRECTORY + "query_subset.csv"
 
 By running:
 ```
-conda run --no-capture-output -n condaenv python main.py
+conda run --no-capture-output -n vsc22 python main.py
 ```
 You can get the subset query features.
 

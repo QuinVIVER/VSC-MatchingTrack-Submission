@@ -3,10 +3,11 @@ import pandas as pd
 import cv2
 import argparse
 
-path = '/raid/VSC/data/test/reference/'
+path = '/data/dataset_val/refs/'
 ls = sorted(os.listdir(path))
 ls = [i.split('.')[0] for i in ls]
-path_save = '/raid/VSC/data/test/reference_one_second_ff_v2/'
+print('len(ls)', len(ls))
+path_save = '/data/dataset_val/reference_one_second_ff_v2/'
 os.makedirs(path_save, exist_ok=True)
 
 parser = argparse.ArgumentParser()
@@ -17,9 +18,12 @@ aa('--num', default=0, type=int, help="The begin number ")
 args = parser.parse_args()
 
 num = args.num
+print('num', num)
 begin = num * (len(ls)//100 + 1)
-end = (num+1) * (len(ls)//100 + 1)
 
+end = (num+1) * (len(ls)//100 + 1)
+print('begin', begin)
+print('end', end)
 for i in range(begin, end):
     name = ls[i]
     print(i, name)

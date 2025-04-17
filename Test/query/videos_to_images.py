@@ -2,7 +2,7 @@ import os
 import argparse
 import pandas as pd
 
-DATA_DIRECTORY = "/data/"
+DATA_DIRECTORY = "/data/dataset_test/"
 QRY_VIDEOS_DIRECTORY = DATA_DIRECTORY + "query/"
 QUERY_SUBSET_FILE = DATA_DIRECTORY + "query_subset.csv"
 

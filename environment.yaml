@@ -246,7 +246,7 @@ dependencies:
     - numba==0.56.3
     - opencv-contrib-python==4.7.0.72
     - opencv-python==4.5.4.60
-    - opencv-python-headless==4.6.0.66
+    - opencv-python-headless<4.3
     - oss2==2.16.0
     - packaging==22.0
     - pandas==1.5.1
@@ -304,4 +304,4 @@ dependencies:
     - wasabi==0.10.1
     - yacs==0.1.8
     - yarl==1.8.2
-prefix: /home/wangwenhao/anaconda3/envs/condaenv
+prefix: /root/miniconda/envs/vsc22

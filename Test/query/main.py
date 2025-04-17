@@ -25,7 +25,7 @@ def videos_to_images():
     
 def extract_feature_50SK_half():
     os.makedirs('./feature/train_v1_50SK_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_2_cls_half/', exist_ok = True)
-    os.system('conda run --no-capture-output -n condaenv python extract_feature.py \
+    os.system('conda run --no-capture-output -n vsc22 python extract_feature.py \
       --image_dir /dev/shm/query_one_second_ff_v2 \
       --o ./feature/train_v1_50SK_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_2_cls_half/query_v1_ff.hdf5 \
       --model 50SK  --GeM_p 3 --bw \
@@ -77,7 +77,7 @@ def detectection():
         dst = '/dev/shm/query_one_second_ff_v2_rotate_2_detection_v3_all/' + name
         shutil.copy(src, dst)
     
-    os.system('conda run --no-capture-output -n condaenv \
+    os.system('conda run --no-capture-output -n vsc22 \
     python detect.py --source /dev/shm/query_one_second_ff_v2_rotate_2_detection_media_v3_all \
     --weights best_20230101.pt --conf 0.1 > /dev/null')
     
@@ -107,11 +107,11 @@ def generation():
     
 
 def fix_rotate():
-    os.system("conda run --no-capture-output -n condaenv python fix_rotate.py") 
+    os.system("conda run --no-capture-output -n vsc22 python fix_rotate.py") 
             
 def extract_feature_vit_bw():
     os.makedirs('./feature/train_v1_vit_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/', exist_ok = True)
-    os.system('conda run --no-capture-output -n condaenv python extract_feature.py \
+    os.system('conda run --no-capture-output -n vsc22 python extract_feature.py \
       --image_dir /dev/shm/query_one_second_ff_v2_rotate_2_detection_v3_all \
       --o ./feature/train_v1_vit_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/query_v1_rotate_detection_v3_all.hdf5 \
       --model vit_base  --GeM_p 3 --bw \
@@ -119,7 +119,7 @@ def extract_feature_vit_bw():
 
 def extract_feature_swin_bw():
     os.makedirs('./feature/train_v1_swin_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/', exist_ok = True)
-    os.system('conda run --no-capture-output -n condaenv python extract_feature.py \
+    os.system('conda run --no-capture-output -n vsc22 python extract_feature.py \
       --image_dir /dev/shm/query_one_second_ff_v2_rotate_2_detection_v3_all \
       --o ./feature/train_v1_swin_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/query_v1_rotate_detection_v3_all.hdf5 \
       --model swin_base  --GeM_p 3 --bw \
@@ -127,7 +127,7 @@ def extract_feature_swin_bw():
     
 def extract_feature_t2t_bw():
     os.makedirs('./feature/train_v1_t2t_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/', exist_ok = True)
-    os.system('conda run --no-capture-output -n condaenv python extract_feature.py \
+    os.system('conda run --no-capture-output -n vsc22 python extract_feature.py \
       --image_dir /dev/shm/query_one_second_ff_v2_rotate_2_detection_v3_all \
       --o ./feature/train_v1_t2t_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN/query_v1_rotate_detection_v3_all.hdf5 \
       --model t2t  --GeM_p 3 --bw \
@@ -135,7 +135,7 @@ def extract_feature_t2t_bw():
     
 def extract_feature_50SK_bw():
     os.makedirs('./feature/train_v1_50SK_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_2_cls_FIN/', exist_ok = True)
-    os.system('conda run --no-capture-output -n condaenv python extract_feature.py \
+    os.system('conda run --no-capture-output -n vsc22 python extract_feature.py \
       --image_dir /dev/shm/query_one_second_ff_v2_rotate_2_detection_v3_all \
       --o ./feature/train_v1_50SK_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_2_cls_FIN/query_v1_rotate_detection_v3_all.hdf5 \
       --model 50SK  --GeM_p 3 --bw \
@@ -200,7 +200,7 @@ def main():
     begin = time.time()
     print("Install packages")
     
-    os.system("conda run --no-capture-output -n condaenv python -m pip install timm-0.4.12-py3-none-any.whl")
+    os.system("conda run --no-capture-output -n vsc22 python -m pip install timm-0.4.12-py3-none-any.whl")
     
     a = time.time()
     print("Transfer videos to images every one second using ff")

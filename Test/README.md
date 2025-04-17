@@ -1,13 +1,17 @@
 # Test
 Before entering the `query` folder, we should prepare the required files:
 
-Assuming we have downloaded the training and test reference datasets, and stored as follows:
+Assuming we have downloaded the VSC22 training and test reference datasets, and stored as follows:
 
 ```
-/raid/VSC/data/train/reference/
-/raid/VSC/data/test/reference/
+cd /data
+wget -i https://dl.fbaipublicfiles.com/video_similarity_challenge/46ef53734a4/vsc_url_list.txt \
+  --cut-dirs 2 -x -nH
+/data/dataset_train/refs
+/data/dataset_val/refs
 ```
-Also, we have $4$ models here (They can also be directly downloaded from https://huggingface.co/WenhaoWang/VSC22_trained):
+
+Also, we have $4$ models here(They can also be directly downloaded from https://huggingface.co/WenhaoWang/VSC22_trained):
 
 1. ```train_v1_swin_s3_512_twolosses_com_L2_norm_100_all_tune_bw_gt_ng_1_cls_FIN.pth.tar```
 
@@ -20,32 +24,43 @@ Also, we have $4$ models here (They can also be directly downloaded from https:/
 
 Then: 
 
-1. We first transform ```/raid/VSC/data/test/reference/``` into images using ```ffmpeg``` by:
+1. We first transform ```/data/dataset_val/refs``` into images using ```ffmpeg``` by:
 
 ```
 bash video2images_ref_ff.sh
 ```
-Note we have transformed the ```/raid/VSC/data/train/reference/``` into images in the training section.
+Note we have transformed the ```/data/dataset_train/refs``` into images in the training section.
 
-2. Get the training reference features (normalization features) by:
+2. Download the model needed during feature extraction and store them into checkpoints folder by:
 
 ```
-bash swin_train_ref.sh
-bash vit_train_ref.sh
-bash t2t_train_ref.sh
-bash 50SK_train_ref.sh
+mkdir pths
+cd pths 
+cp ../pth.txt ./
+wget -i pth.txt \
+  --cut-dirs 2 -x -nH
+find . -type f -exec cp {} /root/.cache/torch/hub/checkpoints/ \;
+```
+3. Get the training reference features (normalization features) by:
+
+```
+bash swin_train_ref.sh 
+bash vit_train_ref.sh 
+bash t2t_train_ref.sh 
+bash 50SK_train_ref.sh 
 ```
 Finally, by running ```python hdf5_to_npz_train.py```, you can get the training (normalization) reference features (```reference_v1_sort_train.npz```) in each folder.
 
 
-3. Get the test reference features:
+4. Get the test reference features:
 
 ```
-bash swin_test_ref.sh
-bash vit_test_ref.sh
-bash t2t_test_ref.sh
+bash swin_test_ref.sh 
+bash vit_test_ref.sh 
+bash t2t_test_ref.sh 
 bash 50SK_test_ref.sh
 ```
+
 Finally, by running ```python hdf5_to_npz_test.py```, you can get the test reference features (```reference_v1_sort_test.npz```) in each folder.
 
 ## Copy
