@@ -7,6 +7,9 @@ from PIL import Image
 from augly.image.transforms import *
 from random import choice
 
+import pylibmagic
+import magic
+
 import timm
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from torch import nn

@@ -3,13 +3,13 @@ import argparse
 import pandas as pd
 
 DATA_DIRECTORY = "/data/dataset_test/"
-QRY_VIDEOS_DIRECTORY = DATA_DIRECTORY + "query/"
-QUERY_SUBSET_FILE = DATA_DIRECTORY + "query_subset.csv"
+QRY_VIDEOS_DIRECTORY = DATA_DIRECTORY + "queries/"
+QUERY_SUBSET_FILE = DATA_DIRECTORY + "queries_metadata.csv"
 
 query_subset = pd.read_csv(QUERY_SUBSET_FILE)
 ls = query_subset.video_id.values.astype("U")
 
-df = pd.read_csv(DATA_DIRECTORY + 'query_metadata.csv')
+df = pd.read_csv(DATA_DIRECTORY + 'queries_metadata.csv')
 path_save = '/dev/shm/query_one_second_ff_v2/'
 os.makedirs(path_save, exist_ok = True)
 #ls = ([q + '.mp4' for q in query_subset_video_ids])
